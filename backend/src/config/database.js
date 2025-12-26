@@ -1,23 +1,25 @@
-import { PrismaClient } from '@prisma/client';
+import mongoose from 'mongoose';
 
-const prisma = new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-});
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+            // These options are no longer needed in Mongoose 6+
+            // but keeping them for compatibility
+        });
 
-// Test database connection
-prisma.$connect()
-    .then(() => {
-        console.log('✅ Database connected successfully');
-    })
-    .catch((error) => {
-        console.error('❌ Database connection failed:', error);
+        console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+        console.log(`📊 Database: ${conn.connection.name}`);
+    } catch (error) {
+        console.error('❌ MongoDB connection failed:', error.message);
         process.exit(1);
-    });
+    }
+};
 
 // Graceful shutdown
-process.on('beforeExit', async () => {
-    await prisma.$disconnect();
-    console.log('🔌 Database disconnected');
+process.on('SIGINT', async () => {
+    await mongoose.connection.close();
+    console.log('🔌 MongoDB disconnected through app termination');
+    process.exit(0);
 });
 
-export default prisma;
+export default connectDB;

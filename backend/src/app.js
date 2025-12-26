@@ -4,9 +4,13 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
+import connectDB from './config/database.js';
 
 // Load environment variables
 dotenv.config();
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -67,8 +71,20 @@ import authRoutes from './routes/auth.routes.js';
 // Use routes
 app.use('/api/auth', authRoutes);
 // TODO: Add more routes as they are created
-// import studentRoutes from './routes/student.routes.js';
-// app.use('/api/students', studentRoutes);
+import studentRoutes from './routes/student.routes.js';
+app.use('/api/students', studentRoutes);
+
+import attendanceRoutes from './routes/attendance.routes.js';
+app.use('/api/attendance', attendanceRoutes);
+
+import feeRoutes from './routes/fee.routes.js';
+app.use('/api/fees', feeRoutes);
+
+import resultRoutes from './routes/results.routes.js';
+app.use('/api/results', resultRoutes);
+
+import homeworkRoutes from './routes/homework.routes.js';
+app.use('/api/homework', homeworkRoutes);
 
 // 404 handler
 app.use((req, res) => {

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import prisma from '../config/database.js';
+import User from '../models/User.js';
 
 // Generate JWT tokens
 const generateTokens = (userId) => {
@@ -33,9 +33,7 @@ export const register = async (req, res) => {
         }
 
         // Check if user already exists
-        const existingUser = await prisma.user.findUnique({
-            where: { email }
-        });
+        const existingUser = await User.findOne({ email });
 
         if (existingUser) {
             return res.status(400).json({
@@ -48,30 +46,24 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create user
-        const user = await prisma.user.create({
-            data: {
-                email,
-                password: hashedPassword,
-                name,
-                role,
-                phone
-            },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                role: true,
-                phone: true,
-                createdAt: true
-            }
+        const user = await User.create({
+            email,
+            password: hashedPassword,
+            name,
+            role,
+            phone
         });
 
+        // Remove password from response
+        const userObject = user.toObject();
+        delete userObject.password;
+
         // Generate tokens
-        const { accessToken, refreshToken } = generateTokens(user.id);
+        const { accessToken, refreshToken } = generateTokens(user._id);
 
         res.status(201).json({
             message: 'User registered successfully',
-            user,
+            user: userObject,
             accessToken,
             refreshToken
         });
@@ -98,9 +90,7 @@ export const login = async (req, res) => {
         }
 
         // Find user
-        const user = await prisma.user.findUnique({
-            where: { email }
-        });
+        const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(401).json({
@@ -120,14 +110,15 @@ export const login = async (req, res) => {
         }
 
         // Generate tokens
-        const { accessToken, refreshToken } = generateTokens(user.id);
+        const { accessToken, refreshToken } = generateTokens(user._id);
 
         // Remove password from response
-        const { password: _, ...userWithoutPassword } = user;
+        const userObject = user.toObject();
+        delete userObject.password;
 
         res.json({
             message: 'Login successful',
-            user: userWithoutPassword,
+            user: userObject,
             accessToken,
             refreshToken
         });
@@ -143,21 +134,14 @@ export const login = async (req, res) => {
 // Get current user profile
 export const getProfile = async (req, res) => {
     try {
-        const user = await prisma.user.findUnique({
-            where: { id: req.user.id },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                role: true,
-                phone: true,
-                createdAt: true,
-                updatedAt: true,
-                student: true,
-                parent: true,
-                teacher: true
-            }
-        });
+        const user = await User.findById(req.user.id).select('-password');
+
+        if (!user) {
+            return res.status(404).json({
+                error: 'Not found',
+                message: 'User not found'
+            });
+        }
 
         res.json({ user });
     } catch (error) {
