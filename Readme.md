@@ -10,7 +10,7 @@
 This is **not just attendance + fees**.
 
 You're building a **digital nervous system** for an institution.
-
+ 
 ### Stakeholders
 
 | Role | Icon | What They See |
