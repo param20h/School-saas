@@ -1,11 +1,47 @@
 node_modules/
+
+# Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .DS_Store
 *.log
+logs/
+
+# Build
 dist/
 build/
+
+# IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# Sensitive files
+secrets/
+config.local.js
+*.key
+*.pem
+*.cert
+*.p12
+*.pfx
+
+# Database
+*.sql
+*.sqlite
+*.db
+data/
+
+# OS
+.DS_Store
+Thumbs.db
