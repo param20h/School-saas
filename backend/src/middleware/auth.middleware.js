@@ -57,6 +57,9 @@ export const authenticate = async (req, res, next) => {
     }
 };
 
+// Alias for authenticate (for backward compatibility)
+export const protect = authenticate;
+
 // Role-based authorization middleware
 export const authorize = (...allowedRoles) => {
     return (req, res, next) => {

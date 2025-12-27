@@ -176,21 +176,33 @@ export default function AdminDashboard() {
                                 </div>
                                 <span className="font-medium text-gray-900 group-hover:text-gray-900">Manage Students</span>
                             </Link>
-                            {[
-                                { icon: GraduationCap, label: 'Add Teacher', color: 'from-purple-500 to-purple-600' },
-                                { icon: Calendar, label: 'Mark Attendance', color: 'from-green-500 to-green-600' },
-                                { icon: DollarSign, label: 'Manage Fees', color: 'from-yellow-500 to-yellow-600' },
-                            ].map((action) => (
-                                <button
-                                    key={action.label}
-                                    className="w-full flex items-center gap-3 p-4 rounded-xl border-2 border-gray-100 hover:border-transparent hover:shadow-lg transition-all group text-left"
-                                >
-                                    <div className={`p-2 bg-gradient-to-br ${action.color} rounded-lg group-hover:scale-110 transition-transform`}>
-                                        <action.icon className="w-5 h-5 text-white" />
-                                    </div>
-                                    <span className="font-medium text-gray-900 group-hover:text-gray-900">{action.label}</span>
-                                </button>
-                            ))}
+                            <Link
+                                href="/dashboard/admin/teachers"
+                                className="w-full flex items-center gap-3 p-4 rounded-xl border-2 border-gray-100 hover:border-transparent hover:shadow-lg transition-all group text-left"
+                            >
+                                <div className="p-2 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg group-hover:scale-110 transition-transform">
+                                    <GraduationCap className="w-5 h-5 text-white" />
+                                </div>
+                                <span className="font-medium text-gray-900 group-hover:text-gray-900">Manage Teachers</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/admin/attendance"
+                                className="w-full flex items-center gap-3 p-4 rounded-xl border-2 border-gray-100 hover:border-transparent hover:shadow-lg transition-all group text-left"
+                            >
+                                <div className="p-2 bg-gradient-to-br from-green-500 to-green-600 rounded-lg group-hover:scale-110 transition-transform">
+                                    <Calendar className="w-5 h-5 text-white" />
+                                </div>
+                                <span className="font-medium text-gray-900 group-hover:text-gray-900">Mark Attendance</span>
+                            </Link>
+                            <Link
+                                href="/dashboard/admin/fees"
+                                className="w-full flex items-center gap-3 p-4 rounded-xl border-2 border-gray-100 hover:border-transparent hover:shadow-lg transition-all group text-left"
+                            >
+                                <div className="p-2 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg group-hover:scale-110 transition-transform">
+                                    <DollarSign className="w-5 h-5 text-white" />
+                                </div>
+                                <span className="font-medium text-gray-900 group-hover:text-gray-900">Manage Fees</span>
+                            </Link>
                         </div>
                     </div>
                 </div>

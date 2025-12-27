@@ -96,3 +96,42 @@ export const feeAPI = {
     create: (data: any) => api.post('/fees', data),
     markPaid: (id: string) => api.put(`/fees/${id}/pay`),
 };
+
+// Homework API calls
+export const homeworkAPI = {
+    getAll: () => api.get('/homework'),
+    getById: (id: string) => api.get(`/homework/${id}`),
+    getByClass: (classId: string) => api.get(`/homework/class/${classId}`),
+    create: (data: any) => api.post('/homework', data),
+    update: (id: string, data: any) => api.put(`/homework/${id}`, data),
+    delete: (id: string) => api.delete(`/homework/${id}`),
+};
+
+// Results API calls
+export const resultAPI = {
+    getAll: () => api.get('/results'),
+    getById: (id: string) => api.get(`/results/${id}`),
+    getByStudent: (studentId: string) => api.get(`/results/student/${studentId}`),
+    getByClass: (classId: string) => api.get(`/results/class/${classId}`),
+    create: (data: any) => api.post('/results', data),
+    update: (id: string, data: any) => api.put(`/results/${id}`, data),
+    delete: (id: string) => api.delete(`/results/${id}`),
+};
+
+// Teacher API calls
+export const teacherAPI = {
+    getAll: () => api.get('/teachers'),
+    getById: (id: string) => api.get(`/teachers/${id}`),
+    create: (data: any) => api.post('/teachers', data),
+    update: (id: string, data: any) => api.put(`/teachers/${id}`, data),
+    delete: (id: string) => api.delete(`/teachers/${id}`),
+};
+
+// Class API calls
+export const classAPI = {
+    getAll: () => api.get('/classes'),
+    getById: (id: string) => api.get(`/classes/${id}`),
+    create: (data: any) => api.post('/classes', data),
+    update: (id: string, data: any) => api.put(`/classes/${id}`, data),
+    delete: (id: string) => api.delete(`/classes/${id}`),
+};
