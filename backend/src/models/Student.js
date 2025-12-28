@@ -19,7 +19,7 @@ const studentSchema = new mongoose.Schema({
     },
     parentId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Parent',
+        ref: 'User',
         required: true
     }
 }, {

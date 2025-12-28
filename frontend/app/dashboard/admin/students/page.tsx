@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/DashboardLayout';
 import {
     Users,
@@ -19,6 +20,7 @@ import {
 import { studentAPI } from '@/lib/api';
 
 export default function StudentManagement() {
+    const router = useRouter();
     const [students, setStudents] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -39,16 +41,26 @@ export default function StudentManagement() {
     });
 
     useEffect(() => {
+        // Check if user is authenticated
+        const token = localStorage.getItem('accessToken');
+        if (!token) {
+            router.push('/login');
+            return;
+        }
         fetchStudents();
-    }, []);
+    }, [router]);
 
     const fetchStudents = async () => {
         try {
             setLoading(true);
             const response = await studentAPI.getAll();
-            setStudents(response.data);
-        } catch (error) {
+            setStudents(Array.isArray(response.data) ? response.data : []);
+        } catch (error: any) {
             console.error('Error fetching students:', error);
+            if (error.response?.status === 401) {
+                router.push('/login');
+            }
+            setStudents([]);
         } finally {
             setLoading(false);
         }
@@ -79,9 +91,9 @@ export default function StudentManagement() {
 
     // Filter students based on search term
     const filteredStudents = students.filter(student =>
-        student.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        student.user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        student.rollNo.includes(searchTerm)
+        student.userId?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        student.userId?.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        student.rollNo?.includes(searchTerm)
     );
 
     return (
@@ -195,17 +207,17 @@ export default function StudentManagement() {
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
-                                                        {student.user.name.charAt(0)}
+                                                        {student.userId?.name?.charAt(0) || '?'}
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-gray-900">{student.user.name}</p>
-                                                        <p className="text-xs text-gray-500">{student.gender}</p>
+                                                        <p className="font-semibold text-gray-900">{student.userId?.name || 'N/A'}</p>
+                                                        <p className="text-xs text-gray-500">ID: {student._id?.slice(-6)}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex flex-col">
-                                                    <span className="font-medium text-gray-900">{student.class} - {student.section}</span>
+                                                    <span className="font-medium text-gray-900">{student.classId?.name || 'N/A'}</span>
                                                     <span className="text-xs text-gray-500">Roll: {student.rollNo}</span>
                                                 </div>
                                             </td>
@@ -213,12 +225,12 @@ export default function StudentManagement() {
                                                 <div className="flex flex-col gap-1 text-sm text-gray-600">
                                                     <div className="flex items-center gap-2">
                                                         <Mail className="w-3 h-3" />
-                                                        {student.user.email}
+                                                        {student.userId?.email || 'N/A'}
                                                     </div>
-                                                    {student.user.phone && (
+                                                    {student.userId?.phone && (
                                                         <div className="flex items-center gap-2">
                                                             <Phone className="w-3 h-3" />
-                                                            {student.user.phone}
+                                                            {student.userId.phone}
                                                         </div>
                                                     )}
                                                 </div>

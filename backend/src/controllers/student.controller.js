@@ -6,8 +6,9 @@ import bcrypt from 'bcryptjs';
 export const getAllStudents = async (req, res) => {
     try {
         const students = await Student.find()
-            .populate('user', 'name email role')
-            .populate('parent', 'user');
+            .populate('userId', 'name email role phone')
+            .populate('parentId', 'name email phone')
+            .populate('classId', 'name section grade');
         res.json(students);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching students', error: error.message });

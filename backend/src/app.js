@@ -6,6 +6,15 @@ import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import connectDB from './config/database.js';
 
+// Import models to register them with Mongoose
+import './models/User.js';
+import './models/Student.js';
+import './models/Class.js';
+import './models/Attendance.js';
+import './models/Fee.js';
+import './models/Homework.js';
+import './models/Result.js';
+
 // Load environment variables
 dotenv.config();
 
