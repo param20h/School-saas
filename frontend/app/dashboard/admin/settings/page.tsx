@@ -65,10 +65,10 @@ export default function SettingsPage() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-                        <p className="text-gray-600 mt-1">Manage your school system configuration</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Settings</h1>
+                        <p className="text-slate-600 mt-1">Manage your school system configuration</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <button

@@ -158,12 +158,12 @@ export default function StudentAttendancePage() {
 
     return (
         <DashboardLayout role="student">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">My Attendance</h1>
-                        <p className="text-gray-600">Track your attendance record</p>
+                        <h1 className="text-3xl font-bold text-slate-900 mb-2">My Attendance</h1>
+                        <p className="text-slate-600">Track your attendance record</p>
                     </div>
                     <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-sm">
                         <Download className="w-5 h-5" />

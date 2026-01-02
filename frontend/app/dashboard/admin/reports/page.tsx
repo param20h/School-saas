@@ -108,10 +108,10 @@ export default function ReportsPage() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Reports & Analytics</h1>
-                        <p className="text-gray-600 mt-1">Generate and view comprehensive reports</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Reports & Analytics</h1>
+                        <p className="text-slate-600 mt-1">Generate and view comprehensive reports</p>
                     </div>
                     <button
                         onClick={generateReport}

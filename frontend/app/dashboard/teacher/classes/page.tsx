@@ -102,10 +102,10 @@ export default function TeacherClasses() {
         <DashboardLayout role="teacher">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">My Classes</h1>
-                        <p className="text-gray-600 mt-1">Manage your assigned classes</p>
+                        <h1 className="text-3xl font-bold text-slate-900">My Classes</h1>
+                        <p className="text-slate-600 mt-1">Manage your assigned classes</p>
                     </div>
                 </div>
 

@@ -86,16 +86,18 @@ export default function ParentDashboard() {
         <DashboardLayout role="parent">
             <div className="space-y-8 animate-fade-in">
                 {/* Welcome Section */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome, Mary! 👋</h1>
-                        <p className="text-gray-600">Monitor your children's academic progress and activities</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-xl hover:bg-red-100 transition-colors">
-                            <Bell className="w-4 h-4 text-red-600" />
-                            <span className="text-sm font-medium text-red-700">2 Urgent</span>
-                        </button>
+                <div className="page-header">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome, Mary! 👋</h1>
+                            <p className="text-slate-600">Monitor your children's academic progress and activities</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <button className="flex items-center gap-2 px-4 py-2.5 bg-red-50 border border-red-200 rounded-xl hover:bg-red-100 transition-all shadow-sm hover:shadow-md active:scale-[0.98]">
+                                <Bell className="w-4 h-4 text-red-600" />
+                                <span className="text-sm font-semibold text-red-700">2 Urgent</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

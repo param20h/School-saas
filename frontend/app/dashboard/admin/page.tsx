@@ -49,10 +49,10 @@ export default function AdminDashboard() {
 
     return (
         <DashboardLayout role="admin">
-            <div className="space-y-8">
+            <div className="space-y-8 animate-fade-in">
                 {/* Header */}
-                <div>
-                    <h1 className="text-2xl font-bold text-slate-900 mb-1">Dashboard Overview</h1>
+                <div className="page-header">
+                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Dashboard Overview</h1>
                     <p className="text-slate-600">Welcome back! Here's what's happening today</p>
                 </div>
 
@@ -61,25 +61,25 @@ export default function AdminDashboard() {
                     {stats.map((stat) => (
                         <div
                             key={stat.name}
-                            className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md hover:border-slate-300 transition-all"
+                            className="stat-card hover:-translate-y-1"
                         >
                             <div className="flex items-start justify-between mb-4">
-                                <div className="p-2.5 bg-slate-100 rounded-lg">
+                                <div className="p-3 bg-slate-50 rounded-xl">
                                     <stat.icon className="w-5 h-5 text-slate-700" />
                                 </div>
-                                <div className={`flex items-center gap-1 text-xs font-medium ${stat.trend === 'up' ? 'text-emerald-600' : 'text-red-600'}`}>
+                                <div className={`flex items-center gap-1 text-xs font-semibold ${stat.trend === 'up' ? 'text-emerald-600' : 'text-red-600'}`}>
                                     {stat.trend === 'up' ? (
-                                        <TrendingUp className="w-3.5 h-3.5" />
+                                        <TrendingUp className="w-4 h-4" />
                                     ) : (
-                                        <TrendingDown className="w-3.5 h-3.5" />
+                                        <TrendingDown className="w-4 h-4" />
                                     )}
                                     {stat.change}
                                 </div>
                             </div>
 
                             <div>
-                                <p className="text-sm text-slate-600 mb-1">{stat.name}</p>
-                                <p className="text-2xl font-bold text-slate-900 mb-1">{stat.value}</p>
+                                <p className="text-sm text-slate-600 mb-2">{stat.name}</p>
+                                <p className="text-3xl font-bold text-slate-900 mb-2">{stat.value}</p>
                                 <p className="text-xs text-slate-500">{stat.description}</p>
                             </div>
                         </div>
@@ -87,8 +87,8 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Quick Stats Bar */}
-                <div className="bg-slate-900 rounded-xl p-6 text-white">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-8 text-white shadow-lg">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         <div>
                             <p className="text-3xl font-bold mb-1">24</p>
                             <p className="text-sm text-slate-300">Classes</p>

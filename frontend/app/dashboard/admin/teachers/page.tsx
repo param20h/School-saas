@@ -119,10 +119,10 @@ export default function TeacherManagement() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Teacher Management</h1>
-                        <p className="text-gray-600 mt-1">Manage faculty members and their assignments</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Teacher Management</h1>
+                        <p className="text-slate-600 mt-1">Manage faculty members and their assignments</p>
                     </div>
                     <button
                         onClick={() => setShowAddModal(true)}

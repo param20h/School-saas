@@ -79,16 +79,18 @@ export default function TeacherDashboard() {
         <DashboardLayout role="teacher">
             <div className="space-y-8 animate-fade-in">
                 {/* Welcome Section */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Good morning, Teacher 👋</h1>
-                        <p className="text-gray-600">You have 3 classes scheduled for today</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-4 py-2 bg-purple-50 border border-purple-200 rounded-xl hover:bg-purple-100 transition-colors">
-                            <Bell className="w-4 h-4 text-purple-600" />
-                            <span className="text-sm font-medium text-purple-700">3 Notifications</span>
-                        </button>
+                <div className="page-header">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl font-bold text-slate-900 mb-2">Good morning, Teacher 👋</h1>
+                            <p className="text-slate-600">You have 3 classes scheduled for today</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <button className="flex items-center gap-2 px-4 py-2.5 bg-purple-50 border border-purple-200 rounded-xl hover:bg-purple-100 transition-all shadow-sm hover:shadow-md active:scale-[0.98]">
+                                <Bell className="w-4 h-4 text-purple-600" />
+                                <span className="text-sm font-semibold text-purple-700">3 Notifications</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

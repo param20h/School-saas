@@ -281,12 +281,12 @@ export default function ParentAttendancePage() {
 
     return (
         <DashboardLayout role="parent">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Attendance Records</h1>
-                        <p className="text-gray-600">Track your children's attendance history</p>
+                        <h1 className="text-3xl font-bold text-slate-900 mb-2">Attendance Records</h1>
+                        <p className="text-slate-600">View your children's attendance</p>
                     </div>
                     <button className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors shadow-sm">
                         <Download className="w-5 h-5" />

@@ -118,19 +118,19 @@ export default function FeeManagement() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Fee Management</h1>
-                        <p className="text-gray-600 mt-1">Manage student fees and payments</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Fee Management</h1>
+                        <p className="text-slate-600 mt-1">Manage student fees and payments</p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+                        <button className="btn-secondary flex items-center gap-2 hover:-translate-y-0.5">
                             <Download className="w-5 h-5" />
                             Export Report
                         </button>
                         <button
                             onClick={() => setShowAddModal(true)}
-                            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:shadow-lg transition-all"
+                            className="btn-primary flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:shadow-lg"
                         >
                             <Plus className="w-5 h-5" />
                             Add Fee Record
@@ -178,12 +178,12 @@ export default function FeeManagement() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <div className="stat-card hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-gray-600 text-sm">Collection Rate</p>
-                                <h3 className="text-3xl font-bold mt-1 text-gray-900">{collectionRate}%</h3>
-                                <p className="text-sm text-gray-500 mt-2">{stats.paidCount} paid</p>
+                                <p className="text-slate-600 text-sm font-medium">Collection Rate</p>
+                                <h3 className="text-3xl font-bold mt-1 text-slate-900">{collectionRate}%</h3>
+                                <p className="text-sm text-slate-500 mt-2">{stats.paidCount} paid</p>
                             </div>
                             <div className="p-3 bg-purple-100 rounded-xl">
                                 <TrendingUp className="w-6 h-6 text-purple-600" />
@@ -193,16 +193,16 @@ export default function FeeManagement() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                <div className="card shadow-sm">
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="flex-1 relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                             <input
                                 type="text"
                                 placeholder="Search by name, roll no, or fee type..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                className="input pl-10 transition-all duration-200"
                             />
                         </div>
                         <div className="flex gap-2">
@@ -210,10 +210,10 @@ export default function FeeManagement() {
                                 <button
                                     key={status}
                                     onClick={() => setFilterStatus(status)}
-                                    className={`px-4 py-3 rounded-xl font-medium transition-all ${
+                                    className={`px-4 py-3 rounded-xl font-medium transition-all duration-200 active:scale-[0.98] ${
                                         filterStatus === status
-                                            ? 'bg-green-600 text-white'
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                            ? 'bg-green-600 text-white shadow-sm'
+                                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                     }`}
                                 >
                                     {status}
@@ -224,50 +224,50 @@ export default function FeeManagement() {
                 </div>
 
                 {/* Fee Records Table */}
-                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="card shadow-lg overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full">
-                            <thead className="bg-gray-50 border-b border-gray-100">
+                            <thead className="bg-slate-50 border-b border-slate-100">
                                 <tr>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Student Info</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Fee Type</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Amount</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Paid</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Due Date</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Student Info</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Fee Type</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Amount</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Paid</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Due Date</th>
+                                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-700">Status</th>
+                                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-700">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-slate-100">
                                 {loading ? (
                                     Array.from({ length: 5 }).map((_, i) => (
-                                        <tr key={i} className="animate-pulse">
-                                            <td className="px-6 py-4"><div className="h-10 bg-gray-100 rounded-full w-48"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-24"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-20"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-20"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-24"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-20 mx-auto"></div></td>
-                                            <td className="px-6 py-4"><div className="h-8 bg-gray-100 rounded w-24 mx-auto"></div></td>
+                                        <tr key={i}>
+                                            <td className="px-6 py-4"><div className="skeleton h-10 rounded-full w-48"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-24"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-20"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-20"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-24"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-20 mx-auto"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-8 w-24 mx-auto"></div></td>
                                         </tr>
                                     ))
                                 ) : filteredFees.length === 0 ? (
                                     <tr>
-                                        <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                                        <td colSpan={7} className="px-6 py-8 text-center text-slate-500">
                                             No fee records found matching your search.
                                         </td>
                                     </tr>
                                 ) : (
                                     filteredFees.map((fee) => (
-                                        <tr key={fee._id} className="hover:bg-gray-50 transition-colors">
+                                        <tr key={fee._id} className="hover:bg-slate-50 transition-all duration-200">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-bold">
                                                         {fee.student?.user?.name?.charAt(0) || 'S'}
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-gray-900">{fee.student?.user?.name || 'N/A'}</p>
-                                                        <p className="text-xs text-gray-500">{fee.student?.class} - {fee.student?.section} | Roll: {fee.student?.rollNo}</p>
+                                                        <p className="font-semibold text-slate-900">{fee.student?.user?.name || 'N/A'}</p>
+                                                        <p className="text-xs text-slate-500">{fee.student?.class} - {fee.student?.section} | Roll: {fee.student?.rollNo}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -277,7 +277,7 @@ export default function FeeManagement() {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <p className="font-semibold text-gray-900">₹{fee.amount.toLocaleString()}</p>
+                                                <p className="font-semibold text-slate-900">₹{fee.amount.toLocaleString()}</p>
                                             </td>
                                             <td className="px-6 py-4">
                                                 <p className="font-semibold text-green-600">₹{fee.paid.toLocaleString()}</p>
@@ -286,7 +286,7 @@ export default function FeeManagement() {
                                                 )}
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="flex items-center gap-2 text-sm text-gray-600">
+                                                <div className="flex items-center gap-2 text-sm text-slate-600">
                                                     <Calendar className="w-4 h-4" />
                                                     {new Date(fee.dueDate).toLocaleDateString()}
                                                 </div>
@@ -315,7 +315,7 @@ export default function FeeManagement() {
                                                 {fee.status !== 'PAID' && (
                                                     <button
                                                         onClick={() => handleMarkPaid(fee._id)}
-                                                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                                                        className="btn-primary px-4 py-2 bg-green-600 hover:bg-green-700 text-sm"
                                                     >
                                                         Mark Paid
                                                     </button>
@@ -332,12 +332,12 @@ export default function FeeManagement() {
                 {/* Add Fee Modal */}
                 {showAddModal && (
                     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 animate-fade-in">
-                        <div className="bg-white rounded-2xl p-6 w-full max-w-xl">
+                        <div className="card-gradient max-w-xl w-full shadow-xl">
                             <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-2xl font-bold text-gray-900">Add Fee Record</h2>
+                                <h2 className="text-2xl font-bold text-slate-900">Add Fee Record</h2>
                                 <button
                                     onClick={() => setShowAddModal(false)}
-                                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                    className="btn-ghost p-2"
                                 >
                                     <X className="w-5 h-5" />
                                 </button>
@@ -345,11 +345,11 @@ export default function FeeManagement() {
 
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Select Student *</label>
+                                    <label className="label">Select Student *</label>
                                     <select
                                         value={formData.studentId}
                                         onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                        className="input transition-all duration-200"
                                         required
                                     >
                                         <option value="">Choose a student...</option>
@@ -363,11 +363,11 @@ export default function FeeManagement() {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Fee Type *</label>
+                                        <label className="label">Fee Type *</label>
                                         <select
                                             value={formData.type}
                                             onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                            className="input transition-all duration-200"
                                             required
                                         >
                                             {feeTypes.map((type) => (
@@ -376,12 +376,12 @@ export default function FeeManagement() {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
+                                        <label className="label">Amount *</label>
                                         <input
                                             type="number"
                                             value={formData.amount}
                                             onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                            className="input transition-all duration-200"
                                             placeholder="15000"
                                             required
                                         />
@@ -389,22 +389,22 @@ export default function FeeManagement() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Due Date *</label>
+                                    <label className="label">Due Date *</label>
                                     <input
                                         type="date"
                                         value={formData.dueDate}
                                         onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                        className="input transition-all duration-200"
                                         required
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                                    <label className="label">Description</label>
                                     <textarea
                                         value={formData.description}
                                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                        className="input transition-all duration-200"
                                         rows={3}
                                         placeholder="Additional details about this fee..."
                                     ></textarea>
@@ -414,13 +414,13 @@ export default function FeeManagement() {
                                     <button
                                         type="button"
                                         onClick={() => setShowAddModal(false)}
-                                        className="flex-1 px-6 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-medium"
+                                        className="btn-secondary flex-1"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         type="submit"
-                                        className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:shadow-lg transition-all font-medium"
+                                        className="btn-primary flex-1 bg-gradient-to-r from-green-600 to-green-700"
                                     >
                                         Add Fee Record
                                     </button>

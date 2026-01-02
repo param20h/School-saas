@@ -138,12 +138,12 @@ export default function ParentResultsPage() {
 
     return (
         <DashboardLayout role="parent">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Exam Results</h1>
-                        <p className="text-gray-600">Track your children's academic performance</p>
+                        <h1 className="text-3xl font-bold text-slate-900 mb-2">Exam Results</h1>
+                        <p className="text-slate-600">Track your children's academic performance</p>
                     </div>
                     <div className="flex gap-3">
                         <button

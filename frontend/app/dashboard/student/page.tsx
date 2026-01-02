@@ -86,14 +86,16 @@ export default function StudentDashboard() {
         <DashboardLayout role="student">
             <div className="space-y-8 animate-fade-in">
                 {/* Welcome Section */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, Sarah! 👋</h1>
-                        <p className="text-gray-600">Keep up the great work! You're doing amazing.</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="px-4 py-2 bg-green-50 border border-green-200 rounded-xl">
-                            <span className="text-sm font-medium text-green-700">Class 10-A • Roll No: 15</span>
+                <div className="page-header">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome back, Sarah! 👋</h1>
+                            <p className="text-slate-600">Keep up the great work! You're doing amazing.</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <div className="px-4 py-2.5 bg-emerald-50 border border-emerald-200 rounded-xl shadow-sm">
+                                <span className="text-sm font-semibold text-emerald-700">Class 10-A • Roll No: 15</span>
+                            </div>
                         </div>
                     </div>
                 </div>

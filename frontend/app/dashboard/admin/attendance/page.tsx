@@ -99,13 +99,13 @@ export default function AttendanceManagement() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Attendance Management</h1>
-                        <p className="text-gray-600 mt-1">Mark and track student attendance</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Attendance Management</h1>
+                        <p className="text-slate-600 mt-1">Mark and track student attendance</p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-all">
+                        <button className="btn-secondary flex items-center gap-2 hover:-translate-y-0.5 active:scale-[0.98]">
                             <Download className="w-5 h-5" />
                             Export Report
                         </button>
@@ -114,21 +114,21 @@ export default function AttendanceManagement() {
 
                 {/* Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <div className="stat-card hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-gray-600 text-sm">Total Students</p>
-                                <h3 className="text-3xl font-bold mt-1 text-gray-900">{students.length}</h3>
+                                <p className="text-slate-600 text-sm font-medium">Total Students</p>
+                                <h3 className="text-3xl font-bold mt-1 text-slate-900">{students.length}</h3>
                             </div>
                             <div className="p-3 bg-blue-100 rounded-xl">
                                 <Users className="w-6 h-6 text-blue-600" />
                             </div>
                         </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <div className="stat-card hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-gray-600 text-sm">Present</p>
+                                <p className="text-slate-600 text-sm font-medium">Present</p>
                                 <h3 className="text-3xl font-bold mt-1 text-green-600">{stats.present}</h3>
                             </div>
                             <div className="p-3 bg-green-100 rounded-xl">
@@ -161,23 +161,23 @@ export default function AttendanceManagement() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <div className="card shadow-sm">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Select Date</label>
+                            <label className="label">Select Date</label>
                             <input
                                 type="date"
                                 value={selectedDate}
                                 onChange={(e) => setSelectedDate(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                                className="input transition-all duration-200"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Select Class</label>
+                            <label className="label">Select Class</label>
                             <select
                                 value={selectedClass}
                                 onChange={(e) => setSelectedClass(e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                                className="input transition-all duration-200"
                             >
                                 {classes.map((cls) => (
                                     <option key={cls.id} value={cls.id}>{cls.name}</option>
@@ -185,15 +185,15 @@ export default function AttendanceManagement() {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Search Student</label>
+                            <label className="label">Search Student</label>
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                 <input
                                     type="text"
                                     placeholder="Search by name or roll no..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                                    className="input pl-10 transition-all duration-200"
                                 />
                             </div>
                         </div>
@@ -201,38 +201,38 @@ export default function AttendanceManagement() {
                 </div>
 
                 {/* Attendance Table */}
-                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="card shadow-lg overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full">
-                            <thead className="bg-gray-50 border-b border-gray-100">
+                            <thead className="bg-slate-50 border-b border-slate-100">
                                 <tr>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Roll No</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Student Name</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Roll No</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">Student Name</th>
+                                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-700">Status</th>
+                                    <th className="px-6 py-4 text-center text-sm font-semibold text-slate-700">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-slate-100">
                                 {loading ? (
                                     Array.from({ length: 5 }).map((_, i) => (
-                                        <tr key={i} className="animate-pulse">
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-16"></div></td>
-                                            <td className="px-6 py-4"><div className="h-10 bg-gray-100 rounded-full w-48"></div></td>
-                                            <td className="px-6 py-4"><div className="h-8 bg-gray-100 rounded w-32 mx-auto"></div></td>
-                                            <td className="px-6 py-4"><div className="h-10 bg-gray-100 rounded w-64 mx-auto"></div></td>
+                                        <tr key={i}>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 w-16"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-10 rounded-full w-48"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-8 w-32 mx-auto"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-10 w-64 mx-auto"></div></td>
                                         </tr>
                                     ))
                                 ) : filteredStudents.length === 0 ? (
                                     <tr>
-                                        <td colSpan={4} className="px-6 py-8 text-center text-gray-500">
+                                        <td colSpan={4} className="px-6 py-8 text-center text-slate-500">
                                             No students found for this class.
                                         </td>
                                     </tr>
                                 ) : (
                                     filteredStudents.map((student) => (
-                                        <tr key={student._id} className="hover:bg-gray-50 transition-colors">
+                                        <tr key={student._id} className="hover:bg-slate-50 transition-all duration-200">
                                             <td className="px-6 py-4">
-                                                <span className="font-semibold text-gray-900">{student.rollNo}</span>
+                                                <span className="font-semibold text-slate-900">{student.rollNo}</span>
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
@@ -240,8 +240,8 @@ export default function AttendanceManagement() {
                                                         {student.user.name.charAt(0)}
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-gray-900">{student.user.name}</p>
-                                                        <p className="text-xs text-gray-500">{student.user.email}</p>
+                                                        <p className="font-semibold text-slate-900">{student.user.name}</p>
+                                                        <p className="text-xs text-slate-500">{student.user.email}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -269,30 +269,30 @@ export default function AttendanceManagement() {
                                                 <div className="flex items-center justify-center gap-2">
                                                     <button
                                                         onClick={() => toggleAttendance(student._id, 'PRESENT')}
-                                                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 active:scale-[0.98] ${
                                                             attendance[student._id] === 'PRESENT'
-                                                                ? 'bg-green-600 text-white'
-                                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                                ? 'bg-green-600 text-white shadow-sm'
+                                                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                                         }`}
                                                     >
                                                         Present
                                                     </button>
                                                     <button
                                                         onClick={() => toggleAttendance(student._id, 'LATE')}
-                                                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 active:scale-[0.98] ${
                                                             attendance[student._id] === 'LATE'
-                                                                ? 'bg-yellow-600 text-white'
-                                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                                ? 'bg-yellow-600 text-white shadow-sm'
+                                                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                                         }`}
                                                     >
                                                         Late
                                                     </button>
                                                     <button
                                                         onClick={() => toggleAttendance(student._id, 'ABSENT')}
-                                                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 active:scale-[0.98] ${
                                                             attendance[student._id] === 'ABSENT'
-                                                                ? 'bg-red-600 text-white'
-                                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                                ? 'bg-red-600 text-white shadow-sm'
+                                                                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                                                         }`}
                                                     >
                                                         Absent
@@ -308,10 +308,10 @@ export default function AttendanceManagement() {
 
                     {/* Submit Button */}
                     {students.length > 0 && (
-                        <div className="p-6 bg-gray-50 border-t border-gray-100">
+                        <div className="p-6 bg-slate-50 border-t border-slate-100">
                             <button
                                 onClick={handleSubmit}
-                                className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:shadow-lg transition-all font-semibold text-lg"
+                                className="btn-primary w-full text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:shadow-lg"
                             >
                                 Submit Attendance for {selectedDate}
                             </button>

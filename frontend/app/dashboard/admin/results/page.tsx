@@ -137,10 +137,10 @@ export default function ResultsManagement() {
         <DashboardLayout role="admin">
             <div className="space-y-6 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="page-header flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Results Management</h1>
-                        <p className="text-gray-600 mt-1">Manage student exam results and grades</p>
+                        <h1 className="text-3xl font-bold text-slate-900">Results Management</h1>
+                        <p className="text-slate-600 mt-1">Manage student exam results and grades</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <button className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-all">

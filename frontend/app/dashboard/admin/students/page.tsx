@@ -98,68 +98,70 @@ export default function StudentManagement() {
 
     return (
         <DashboardLayout role="admin">
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-8 animate-fade-in">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Student Management</h1>
-                        <p className="text-gray-600 mt-1">Manage all student records and profiles</p>
+                <div className="page-header">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl font-bold text-slate-900">Student Management</h1>
+                            <p className="text-slate-600 mt-1">Manage all student records and profiles</p>
+                        </div>
+                        <button
+                            onClick={() => setShowAddModal(true)}
+                            className="btn-primary flex items-center gap-2"
+                        >
+                            <Plus className="w-5 h-5" />
+                            Add New Student
+                        </button>
                     </div>
-                    <button
-                        onClick={() => setShowAddModal(true)}
-                        className="btn-primary flex items-center gap-2"
-                    >
-                        <Plus className="w-5 h-5" />
-                        Add New Student
-                    </button>
                 </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="card bg-gradient-to-br from-blue-500 to-blue-600 text-white border-none">
+                    <div className="card-gradient bg-gradient-to-br from-blue-500 to-blue-600 text-white border-blue-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-blue-100">Total Students</p>
-                                <h3 className="text-3xl font-bold mt-1">{students.length}</h3>
+                                <p className="text-blue-100 text-sm font-medium">Total Students</p>
+                                <h3 className="text-4xl font-bold mt-2">{students.length}</h3>
                             </div>
                             <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
                                 <Users className="w-6 h-6 text-white" />
                             </div>
                         </div>
                     </div>
-                    <div className="card">
+                    <div className="stat-card hover:-translate-y-1">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-gray-600">Active Classes</p>
-                                <h3 className="text-3xl font-bold mt-1 text-gray-900">12</h3>
+                                <p className="text-slate-600 text-sm font-medium">Active Classes</p>
+                                <h3 className="text-4xl font-bold mt-2 text-slate-900">12</h3>
                             </div>
-                            <div className="p-3 bg-purple-100 rounded-xl">
+                            <div className="p-3 bg-purple-50 rounded-xl">
                                 <Users className="w-6 h-6 text-purple-600" />
                             </div>
                         </div>
                     </div>
-                    <div className="card">
+                    <div className="stat-card hover:-translate-y-1">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-gray-600">Average Attendance</p>
-                                <h3 className="text-3xl font-bold mt-1 text-gray-900">94%</h3>
+                                <p className="text-slate-600 text-sm font-medium">Average Attendance</p>
+                                <h3 className="text-4xl font-bold mt-2 text-slate-900">94%</h3>
                             </div>
-                            <div className="p-3 bg-green-100 rounded-xl">
-                                <Users className="w-6 h-6 text-green-600" />
+                            <div className="p-3 bg-emerald-50 rounded-xl">
+                                <Users className="w-6 h-6 text-emerald-600" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Search and Filter */}
-                <div className="card">
+                <div className="card-hover">
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="flex-1 relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                             <input
                                 type="text"
                                 placeholder="Search by name, email, or roll no..."
-                                className="input pl-10"
+                                className="input pl-12"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
@@ -172,27 +174,27 @@ export default function StudentManagement() {
                 </div>
 
                 {/* Students Table */}
-                <div className="card overflow-hidden p-0">
+                <div className="card-hover overflow-hidden p-0 shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
-                            <thead className="bg-gray-50 border-b border-gray-100">
+                            <thead className="bg-slate-50 border-b border-slate-200">
                                 <tr>
-                                    <th className="px-6 py-4 text-sm font-semibold text-gray-700">Student Info</th>
-                                    <th className="px-6 py-4 text-sm font-semibold text-gray-700">Class & Roll</th>
-                                    <th className="px-6 py-4 text-sm font-semibold text-gray-700">Contact</th>
-                                    <th className="px-6 py-4 text-sm font-semibold text-gray-700">Status</th>
-                                    <th className="px-6 py-4 text-sm font-semibold text-gray-700">Actions</th>
+                                    <th className="px-6 py-4 text-sm font-semibold text-slate-700">Student Info</th>
+                                    <th className="px-6 py-4 text-sm font-semibold text-slate-700">Class & Roll</th>
+                                    <th className="px-6 py-4 text-sm font-semibold text-slate-700">Contact</th>
+                                    <th className="px-6 py-4 text-sm font-semibold text-slate-700">Status</th>
+                                    <th className="px-6 py-4 text-sm font-semibold text-slate-700">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-100">
+                            <tbody className="divide-y divide-slate-100">
                                 {loading ? (
                                     Array.from({ length: 5 }).map((_, i) => (
                                         <tr key={i} className="animate-pulse">
-                                            <td className="px-6 py-4"><div className="h-10 bg-gray-100 rounded-full w-48"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-24"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-32"></div></td>
-                                            <td className="px-6 py-4"><div className="h-6 bg-gray-100 rounded w-16"></div></td>
-                                            <td className="px-6 py-4"><div className="h-8 bg-gray-100 rounded w-8"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-10 rounded-lg w-48"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 rounded w-24"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 rounded w-32"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-6 rounded w-16"></div></td>
+                                            <td className="px-6 py-4"><div className="skeleton h-8 rounded w-8"></div></td>
                                         </tr>
                                     ))
                                 ) : filteredStudents.length === 0 ? (
