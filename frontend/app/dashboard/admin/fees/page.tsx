@@ -89,10 +89,14 @@ export default function FeeManagement() {
     };
 
     const filteredFees = fees.filter(fee => {
+        const studentName = fee.student?.user?.name || '';
+        const rollNo = fee.student?.rollNo || '';
+        const feeType = fee.type || '';
+        
         const matchesSearch = 
-            fee.student.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            fee.student.rollNo.includes(searchTerm) ||
-            fee.type.toLowerCase().includes(searchTerm.toLowerCase());
+            studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            rollNo.includes(searchTerm) ||
+            feeType.toLowerCase().includes(searchTerm.toLowerCase());
         
         const matchesFilter = 
             filterStatus === 'ALL' || fee.status === filterStatus;
@@ -259,11 +263,11 @@ export default function FeeManagement() {
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white font-bold">
-                                                        {fee.student.user.name.charAt(0)}
+                                                        {fee.student?.user?.name?.charAt(0) || 'S'}
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-gray-900">{fee.student.user.name}</p>
-                                                        <p className="text-xs text-gray-500">{fee.student.class} - {fee.student.section} | Roll: {fee.student.rollNo}</p>
+                                                        <p className="font-semibold text-gray-900">{fee.student?.user?.name || 'N/A'}</p>
+                                                        <p className="text-xs text-gray-500">{fee.student?.class} - {fee.student?.section} | Roll: {fee.student?.rollNo}</p>
                                                     </div>
                                                 </div>
                                             </td>

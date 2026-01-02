@@ -116,69 +116,88 @@ export default function DashboardLayout({ children, role }: DashboardLayoutProps
 
     if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+                <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-900 border-t-transparent"></div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Top Navigation */}
-            <nav className={`${getRoleColor()} text-white shadow-lg`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center">
-                            <button
-                                onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="md:hidden p-2 rounded-md hover:bg-white/10"
-                            >
-                                {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                            </button>
-                            <Link href={`/dashboard/${role}`} className="flex items-center gap-2 ml-2 md:ml-0">
-                                <GraduationCap className="h-8 w-8" />
-                                <span className="font-bold text-xl hidden sm:block">School MS</span>
-                            </Link>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <div className="text-right hidden sm:block">
-                                <p className="text-sm font-medium">{user.name}</p>
-                                <p className="text-xs opacity-90 capitalize">{user.role}</p>
+        <div className="min-h-screen bg-slate-50 flex">
+            {/* Sidebar */}
+            <aside
+                className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                    } md:translate-x-0 fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out`}
+            >
+                <div className="h-full flex flex-col">
+                    {/* Logo */}
+                    <div className="h-16 border-b border-slate-200 flex items-center px-6">
+                        <Link href={`/dashboard/${role}`} className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+                                <GraduationCap className="w-4 h-4 text-white" />
                             </div>
-                            <button
-                                onClick={handleLogout}
-                                className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-                            >
-                                <LogOut className="h-5 w-5" />
-                                <span className="hidden sm:inline">Logout</span>
-                            </button>
-                        </div>
+                            <span className="font-semibold text-slate-900">BrokenShell</span>
+                        </Link>
                     </div>
-                </div>
-            </nav>
 
-            <div className="flex">
-                {/* Sidebar */}
-                <aside
-                    className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-                        } md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out mt-16 md:mt-0`}
-                >
-                    <nav className="p-4 space-y-2">
+                    {/* Navigation */}
+                    <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
                         {getNavItems().map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors text-gray-700 hover:text-gray-900"
+                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-100 transition-colors text-slate-700 hover:text-slate-900 text-sm font-medium"
                             >
                                 <item.icon className="h-5 w-5" />
-                                <span className="font-medium">{item.name}</span>
+                                <span>{item.name}</span>
                             </Link>
                         ))}
                     </nav>
-                </aside>
 
-                {/* Main Content */}
-                <main className="flex-1 p-6 md:p-8">
+                    {/* User Info */}
+                    <div className="p-4 border-t border-slate-200">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
+                                <span className="text-sm font-semibold text-slate-700">
+                                    {user.name?.charAt(0).toUpperCase()}
+                                </span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-slate-900 truncate">{user.name}</p>
+                                <p className="text-xs text-slate-500 capitalize">{user.role}</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-700"
+                        >
+                            <LogOut className="h-4 w-4" />
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col min-w-0">
+                {/* Top Bar */}
+                <header className="h-16 bg-white border-b border-slate-200 flex items-center px-6 sticky top-0 z-40">
+                    <button
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                        className="md:hidden p-2 rounded-lg hover:bg-slate-100 -ml-2"
+                    >
+                        {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                    </button>
+                    <div className="flex-1"></div>
+                    <div className="flex items-center gap-3">
+                        <span className="text-sm text-slate-500">
+                            {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                        </span>
+                    </div>
+                </header>
+
+                {/* Page Content */}
+                <main className="flex-1 p-6 lg:p-8 overflow-y-auto">
                     <div className="max-w-7xl mx-auto">
                         {children}
                     </div>
@@ -188,7 +207,7 @@ export default function DashboardLayout({ children, role }: DashboardLayoutProps
             {/* Mobile Sidebar Overlay */}
             {sidebarOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/50 z-30 mt-16"
+                    className="md:hidden fixed inset-0 bg-black/50 z-40"
                     onClick={() => setSidebarOpen(false)}
                 />
             )}
